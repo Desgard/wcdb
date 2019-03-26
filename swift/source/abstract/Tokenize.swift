@@ -104,11 +104,12 @@ extension Module {
                             nBytes: Int32,
                             ppCursor: UnsafeMutablePointer<UnsafeMutablePointer<sqlite3_tokenizer_cursor>?>?) -> Int32 {
         var bytes: Int32 = nBytes
+        
         if pInput == nil {
             bytes = 0
         }
         if bytes < 0 {
-            bytes = Int32(strlen(pInput))
+            bytes = Int32(strlen(pInput!))
         }
 
         let cursorSize = MemoryLayout<Cursor>.size
